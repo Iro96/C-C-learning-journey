@@ -19,7 +19,14 @@ jobs:
       - name: Compile all C++ solutions
         run: |
           set -e
-          for file in codeforces_practice/rate_800/*.cpp; do
+          # Compile codeforces_practice
+          for file in codeforces_practice/*/*.cpp; do
             echo "Compiling $file"
-            g++ -std=gnu++17 -O2 -Wall -Wextra "$file" -o "$file.out"
+            g++ -std=gnu++17 -O2 -Wall -Wextra "$file" -o "${file%.cpp}.out"
+          done
+
+          # Compile codeforces_contests
+          for file in codeforces_contests/*/*.cpp; do
+            echo "Compiling $file"
+            g++ -std=gnu++17 -O2 -Wall -Wextra "$file" -o "${file%.cpp}.out"
           done
